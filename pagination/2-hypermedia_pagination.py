@@ -4,7 +4,7 @@ Module for simple and hypermedia pagination.
 """
 import csv
 import math
-from typing import List, Tuple, Dict, Any
+from typing import Any, Dict, List, Tuple
 
 
 def index_range(page: int, page_size: int) -> Tuple[int, int]:
@@ -52,7 +52,6 @@ class Server:
         data = self.get_page(page, page_size)
         dataset_len = len(self.dataset())
         total_pages = math.ceil(dataset_len / page_size)
-        
         return {
             "page_size": len(data),
             "page": page,
