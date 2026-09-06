@@ -43,19 +43,15 @@ class Server:
         """
         if index is None:
             index = 0
-            
         assert type(index) is int and type(page_size) is int
         assert 0 <= index < len(self.dataset())
-
         data = []
         next_index = index
         indexed_dataset = self.indexed_dataset()
-
         while len(data) < page_size and next_index < len(self.dataset()):
             if next_index in indexed_dataset:
                 data.append(indexed_dataset[next_index])
             next_index += 1
-
         return {
             "index": index,
             "data": data,
