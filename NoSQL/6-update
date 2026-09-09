@@ -1,3 +1,4 @@
+// Update student
 db.student.updateMany(
     {name: "ali"},
 { $set: { status: "Graduated" } }
