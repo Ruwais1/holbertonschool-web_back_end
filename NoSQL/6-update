@@ -1,5 +1,5 @@
 // Update student
-db.student.updateMany(
+db.school.updateMany(
     {id: "5a8fad532b69437b63252406" }
     {name: "Holberton school"},
 { $set: { Address: "972 Mission street" } }
