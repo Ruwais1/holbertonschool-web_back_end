@@ -4,7 +4,7 @@ Where can i learn python?
 """
 
 
-def schools_by_topics(mongo_collection, topic):
+def schools_by_topic(mongo_collection, topic):
     """
     Return the list of school have a specific topic
     """
