@@ -4,8 +4,8 @@ Where can i learn python?
 """
 
 
-def schools_by_topics(mongo_collection, topic):
+def school_by_topics(mongo_collection, topic):
     """
     Return the list of school have a specific topic
     """
-    returnlist(mongo_collection.find({ "topics": topic }))
+    return list(mongo_collection.find({ "topics": topic }))
