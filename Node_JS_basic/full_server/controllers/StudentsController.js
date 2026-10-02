@@ -1,0 +1,39 @@
+import { readDatabase } from '../utils';
+
+class StudentsController {
+  static getAllStudents(request, response) {
+    readDatabase(process.argv[2])
+      .then((fields) => {
+        const lines = ['This is the list of our students'];
+        Object.keys(fields)
+          .sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()))
+          .forEach((field) => {
+            lines.push(`Number of students in ${field}: ${fields[field].length}. List: ${fields[field].join(', ')}`);
+          });
+        response.status(200).type('text/plain').send(lines.join('\n'));
+      })
+      .catch(() => {
+        response.status(500).type('text/plain').send('Cannot load the database');
+      });
+  }
+
+  static getAllStudentsByMajor(request, response) {
+    const { major } = request.params;
+
+    if (major !== 'CS' && major !== 'SWE') {
+      response.status(500).type('text/plain').send('Major parameter must be CS or SWE');
+      return;
+    }
+
+    readDatabase(process.argv[2])
+      .then((fields) => {
+        const list = fields[major] || [];
+        response.status(200).type('text/plain').send(`List: ${list.join(', ')}`);
+      })
+      .catch(() => {
+        response.status(500).type('text/plain').send('Cannot load the database');
+      });
+  }
+}
+
+export default StudentsController;
